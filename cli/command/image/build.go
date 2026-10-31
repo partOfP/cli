@@ -122,6 +122,7 @@ func newBuildCommand(dockerCLI command.Cli) *cobra.Command {
 	flags.SetAnnotation("build-arg", annotation.ExternalURL, []string{"https://docs.docker.com/reference/cli/docker/buildx/build/#build-arg"})
 	flags.Var(options.ulimits, "ulimit", "Ulimit options")
 	flags.StringVarP(&options.dockerfileName, "file", "f", "", `Name of the Dockerfile (Default is "PATH/Dockerfile")`)
+	_ = cmd.RegisterFlagCompletionFunc("file", completion.FileNames())
 	flags.SetAnnotation("file", annotation.ExternalURL, []string{"https://docs.docker.com/reference/cli/docker/buildx/build/#file"})
 	flags.VarP(&options.memory, "memory", "m", "Memory limit")
 	flags.Var(&options.memorySwap, "memory-swap", `Swap limit equal to memory plus swap: -1 to enable unlimited swap`)
